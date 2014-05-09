@@ -1,12 +1,12 @@
 console.log('start');
-var startnode = '114e';
+var startnode = 'lobby';
 var endnode = '107';
 
 function split_string(source, splitby){
     return source.split(splitby)
 }
 function split_byencodedDash(source){
-    return split_string(source, '_x5F_');
+    return split_string(source, '_');
 }
 function remove_connection(arr){
     return _.rest(arr);
@@ -27,9 +27,6 @@ function extract_connectionlist(){
             var node_id = String(kid.id);
             // console.log(node_id + 'id: '+ kid.id + ', type: '+ kid.nodeType);
             if (node_id.indexOf("connection") > -1) {
-                elements.push(node_id);
-            }
-            if (node_id.indexOf("access") > -1) {
                 elements.push(node_id);
             }
         }
