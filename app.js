@@ -1,6 +1,6 @@
 console.log('start');
 var startnode = '114e';
-var endnode = '81';
+var endnode = '107';
 
 function split_string(source, splitby){
     return source.split(splitby)
@@ -25,8 +25,11 @@ function extract_connectionlist(){
         for (var i=0,len=kids.length;i<len;++i){
             var kid = kids[i];
             var node_id = String(kid.id);
-    //            console.log(node_id + 'id: '+ kid.id + ', type: '+ kid.nodeType);
+            // console.log(node_id + 'id: '+ kid.id + ', type: '+ kid.nodeType);
             if (node_id.indexOf("connection") > -1) {
+                elements.push(node_id);
+            }
+            if (node_id.indexOf("access") > -1) {
                 elements.push(node_id);
             }
         }
@@ -41,10 +44,9 @@ function extract_connector(startnode, ele){
         return ele[0];
     }
 }
-connections = extract_connectionlist();
-
-var x = _.map(connections, split_byencodedDash);
-x = _.map(x, remove_connection);
+var connections = extract_connectionlist();
+var all_connectors = _.map(connections, split_byencodedDash);
+all_connectors = _.map(all_connectors, remove_connection);
 var routes = [[startnode]];
 
 function listExistsInListOfLists(lst,targetlst){
@@ -59,7 +61,7 @@ function listExistsInListOfLists(lst,targetlst){
 
 function make_steps(routes) {
     _.each(routes, function (ele, index, lst) {
-        var edgelink = find_node(_.last(ele), x);
+        var edgelink = find_node(_.last(ele), all_connectors);
         _.each(edgelink, function (edge_ele, edge_index, edge_lst) {
             var new_edge = extract_connector(ele, edge_ele);
             if( ! (_.contains(ele, new_edge))) {
