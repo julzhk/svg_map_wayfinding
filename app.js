@@ -1,4 +1,7 @@
 console.log('start');
+var startnode = '114e';
+var endnode = '81';
+
 function split_string(source, splitby){
     return source.split(splitby)
 }
@@ -14,19 +17,23 @@ function find_node(ele,arr){
 }
 
 function extract_connectionlist(){
-    var svg = document.getElementsByTagName('svg')[0];
     var elements = [];
-    var kids = svg.childNodes;
-    for (var i=0,len=kids.length;i<len;++i){
-        var kid = kids[i];
-        var node_id = String(kid.id);
-//            console.log(node_id + 'id: '+ kid.id + ', type: '+ kid.nodeType);
-        if (node_id.indexOf("connection") > -1) {
-            elements.push(node_id);
+    _.map(document.getElementsByTagName('svg'), function(svg){
+//    var svg = document.getElementsByTagName('svg')[0];
+
+        var kids = svg.childNodes;
+        for (var i=0,len=kids.length;i<len;++i){
+            var kid = kids[i];
+            var node_id = String(kid.id);
+    //            console.log(node_id + 'id: '+ kid.id + ', type: '+ kid.nodeType);
+            if (node_id.indexOf("connection") > -1) {
+                elements.push(node_id);
+            }
         }
-    }
-   return elements;
-}
+    })
+       return elements;
+
+};
 function extract_connector(startnode, ele){
     if (ele[0] == startnode){
         return ele[1];
@@ -36,10 +43,8 @@ function extract_connector(startnode, ele){
 }
 connections = extract_connectionlist();
 
-x = _.map(connections, split_byencodedDash);
+var x = _.map(connections, split_byencodedDash);
 x = _.map(x, remove_connection);
-var startnode = '50b';
-var endnode = '21';
 var routes = [[startnode]];
 
 function listExistsInListOfLists(lst,targetlst){
