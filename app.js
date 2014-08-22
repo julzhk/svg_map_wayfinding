@@ -1,6 +1,6 @@
 console.log('start');
-var startnode = 'lobby';
-var endnode = '107';
+var startnode = 'lobby0';
+var endnode = '40';
 
 function split_string(source, splitby){
     return source.split(splitby)
@@ -81,11 +81,16 @@ function find_solutions(routes,endnode){
     solns.sort(function(a, b){return a.length -b.length });
     return solns;
 }
-
-_.each(routes,function(ele,index,lst){console.log(String(ele))});
+// to see each potential path:
+//_.each(routes,function(ele,index,lst){console.log(String(ele))});
 var solns = find_solutions(routes,endnode);
-
-
-console.log('routes found');
-_.each(solns,function(ele,index,lst){console.log(String(ele))});
+console.log('route found');
+results = _.each(solns,function(ele,index,lst){console.log(String(ele))});
+result = _.each(solns[0],function(ele,index,lst){console.log(String(ele))});
+introtext = 'For example, to go from '+ startnode + ' to room '+ endnode + ', you can take the following path:<br>';
+document.getElementById('path').innerHTML += introtext;
+path = 'Orientate yourself, then go:<br>';
+_.each(solns[0],function(ele){path += ' to room "' + ele + '",<br>'});
+path += ' and now you have arrived!'
+document.getElementById('path').innerHTML += path;
 console.log('done');

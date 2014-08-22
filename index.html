@@ -2,13 +2,24 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-    <title></title>
+    <title>path finding in an svg map</title>
+    <style>
+        svg {
+     width: 50%;
+     height: 300px;
+            float:left;
+    }
+
+    </style>
     <script src="//cdn.jsdelivr.net/underscorejs/1.4.3/underscore-min.js"></script>
 </head>
-<body style="background-color: blue;">
-Routefinding using an SVG as a data source.
+<body >
+<p>Routefinding using an SVG as a data source.
 This SVG has a consistent naming pattern, which allows us to extract links from room to room easily
 using this, we can generate a list of potential routes; this is sorted by shortest-path.
+</p>
+<div id="path"></div>
+<div style="">
 <svg id="level_0" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="2602px" height="2200px" viewBox="0 0 2602 2200" enable-background="new 0 0 2602 2200" xml:space="preserve" class="draggable zoomable">
 <g id="outline">
 	<path fill="#C4D3D6" d="M2559.665,1683.875l-13,1.585l0.068,2.109l-52.31,7.08l-0.394-1.671l-7.177,0.983l-93.53-685.694l-52-377
@@ -57,7 +68,7 @@ using this, we can generate a list of potential routes; this is sorted by shorte
 		777.583,546.19 775.5,546.19 775.5,548.396 744.499,548.396 744.499,546.436 742.906,546.436 742.906,544.965 738.484,544.965 	"/>
 </g>
 -->
-<g id="connection_lobby_lifty" data-type="connection">
+<g id="connection_lobby0_lifty" data-type="connection">
 	<polygon fill="#82a2af" points="553.681,630.638 552.199,639.531 548.391,638.896 547.41,645.453 525.942,641.946 526.873,636.657
 		523.76,636.08 521.566,647.583 499.465,643.52 501.741,632.094 498.837,631.475 505.32,592.453 508.189,592.878 509.89,582.995
 		507.049,582.493 507.852,577.335 503.719,576.633 508.395,547.132 512.823,547.768 515.364,531.31 508.569,530.309
@@ -284,7 +295,7 @@ using this, we can generate a list of potential routes; this is sorted by shorte
 		209.789,1192.432 211.043,1184.93 204.66,1183.828 207.892,1165.864 217.4,1167.281 	" data-fill="#333333"></polygon>
 </g>
 <!--
-<g id="connection_entrance_lobby_1_">
+<g id="connection_entrance_lobby0">
 	<polygon fill="#C7B299" points="339.263,674.035 333.17,712.319 305.633,707.936 289.599,808.681 294.973,809.536 295.359,807.108
 		333.508,813.18 331.945,822.996 351.019,826.031 345.867,858.404 309.733,852.653 295.709,940.772 299.738,941.414
 		299.589,942.353 301.201,942.61 299.726,951.88 298.114,951.624 295.805,966.13 297.148,966.344 295.716,975.344 294.238,975.108
@@ -308,7 +319,7 @@ using this, we can generate a list of potential routes; this is sorted by shorte
 		174.595,1104.737 188.151,1106.895 188.404,1105.306 190.417,1105.627 191.259,1100.331 218.265,1104.629 217.254,1110.984
 		222.761,1111.86 223.806,1105.294 225.607,1105.581 226.133,1102.274 	" data-fill="#C7B299"></polygon>
 </g>
-<g id="connection_entrance_lobby" data-type="connection">
+<g id="connection_entrance_lobby0" data-type="connection">
 	<polygon fill="#82a2af" points="314.392,655.658 312.169,669.496 284.979,664.943 287.146,651.322 	" data-fill="#C7B299"></polygon>
 </g>
 <g id="connection_entrance_art-studio" data-type="connection">
@@ -993,12 +1004,12 @@ using this, we can generate a list of potential routes; this is sorted by shorte
 			2017.554,1918.536 2021.001,1918.536 2021.001,1921.235 2087.583,1921.235 		" data-fill="#C6B29A"></polygon>
 	</g>
 </g>
-<g id="connection_corridor_liftf_lev1" data-type="connection">
+<g id="connection_corridor_liftf" data-type="connection">
 	<path fill="#82a2af" d="M317.511,1231.601h15.866v13.456h2.462c0,0-4.24,3.557-9.164,9.438s-7.66,11.489-7.66,11.489h-10.668
 		l-4.719,52.386l-6.36-1.094v1.538l-13.488-2.146l0.218-1.354l-6.958-1.049l2.319-11.217l6.496,0.758l9.635-59.707l21.885,0.388
 		L317.511,1231.601z" data-fill="#C6B29A"></path>
 </g>
-<g id="connection_corridor_liftb_level2" data-type="connection">
+<g id="connection_corridor_liftb" data-type="connection">
 	<polygon fill="#82a2af" points="1112.837,1892.334 1112.837,1883.194 1051.767,1883.194 1051.76,1886.471 1037.175,1886.471
 		1037.175,1883.194 1009.987,1883.194 1009.987,1889.449 1009.098,1889.449 1009.098,1901.175 1009.987,1901.175 1009.987,1906.513
 		1006.753,1906.513 1006.753,1908.291 1005.657,1908.291 1005.694,1907.427 1004.526,1907.393 1004.488,1906.513 980.827,1906.513
@@ -3202,7 +3213,7 @@ using this, we can generate a list of potential routes; this is sorted by shorte
 		451.15,541.587 455.763,511.287 436.102,508.15 	"/>
 </g>
 -->
-<g id="connection_lobby_lifty" data-type="connection">
+<g id="connection_lobby1_lifty" data-type="connection">
     <polygon fill="#82a2af" points="567.776,494.076 568.523,490.229 547.823,486.935 556.003,437.382 531.86,433.349
         522.977,486.731 531.017,488.033 530.087,493.593 375.213,468.923 373.971,476.728 366.565,475.548 368.499,463.397
         324.164,456.341 308.087,550.316 353.515,557.546 354.686,550.186 362.093,551.365 359.634,566.788 380.026,570.036
@@ -3423,12 +3434,12 @@ using this, we can generate a list of potential routes; this is sorted by shorte
 		l-0.795-10.336l-2.729,0.213l-0.181-1.668l-63.412,6.479l-0.776-6.131L1968.844,1952.816z M2088.656,1923.369h56.455v-35.858
 		h-56.455V1923.369z" data-fill="#C7B299"></path>
 </g>
-<g id="connection_corridor_liftf_lev2" data-type="connection">
+<g id="connection_corridor_liftf" data-type="connection">
 	<polygon fill="#82a2af" points="258.937,1358.487 270.333,1360.307 271.591,1352.884 277.949,1353.848 278.539,1350.019
 		291.72,1352.198 291.059,1355.68 313.616,1359.536 313.616,1366.477 294.249,1366.477 294.249,1393.468 280.358,1390.866
 		279.846,1392.598 267.893,1390.663 268.364,1388.938 266.188,1388.263 267.345,1379.394 255.914,1377.152 	" data-fill="#C7B299"></polygon>
 </g>
-<g id="connection_corridor_liftb_level2" data-type="connection">
+<g id="connection_corridor_liftb" data-type="connection">
 	<polygon fill="#82a2af" points="980.827,1906.513 1004.488,1906.513 1004.526,1907.393 1005.694,1907.427 1005.657,1908.291
 		1006.753,1908.291 1006.753,1906.513 1009.987,1906.513 1009.987,1901.175 1009.098,1901.175 1009.098,1889.449 1009.987,1889.449
 		1009.987,1882.83 1037.159,1882.83 1037.159,1917.187 1031.741,1917.187 1031.741,1919.694 1025.271,1919.215 1024.784,1932.376
@@ -6335,7 +6346,7 @@ using this, we can generate a list of potential routes; this is sorted by shorte
 <g id="facility_pda-education-room" data-type="facilities" data-facility-category="pda-education-room">
 	<polygon fill="#82a2af" points="571.289,494.346 525.743,487.217 517.63,539.826 563.184,546.956 	" data-fill="#999999"></polygon>
 </g>
-<g id="connection_lifty_lobby" data-type="connection">
+<g id="connection_lifty_lobby4" data-type="connection">
 	<path fill="#82a2af" d="M558.51,593.518l-29.966-5.358l0.529-3.183l0.594-3.527l27.372,4.25l2.069-12.995l1.423,0.231l3.292-21.292
 		l-1.325-0.234l0.686-4.453l-45.554-7.129l-0.153,0.994l-3.331-0.481c-1.443,9.124-2.948,18.666-4.473,28.367l3.197,0.543
 		l-1.51,9.32l5.138,0.802l-0.551,3.271l-0.555,3.117l-4.82-0.867l-0.908,5.709l-7.915-1.245l-4.419,27.722l7.934,1.206l-0.501,3.149
@@ -7321,7 +7332,7 @@ using this, we can generate a list of potential routes; this is sorted by shorte
 		l-0.704,4.334l1.794,0.304l38.04,5.907l-1.006,6.28l3.297,0.562l-1.567,9.66l-3.294-0.453l-4.175,26.073l-58.897-9.664L502,636.981
 		z M516.986,664.939l22.467,3.679l1.42-8.517l-22.661-3.622L516.986,664.939z"/>
 </g>
-<g id="connection_lifty_lobby">
+<g id="connection_lifty_lobby5">
 	<path fill="#C6B29A" d="M499.312,604.654l-1.98,12.424l7.934,1.206l-0.501,3.149l22.559,3.646l-1.562,9.562l3.044,0.406
 		l-0.232,1.781l22.688,3.507l1.276-8.242l4.184,0.604l1.449-8.881l-4.249-0.658l2.388-15.421l4.074,0.66l1.446-8.863l-4.153-0.625
 		l0.835-5.394l-29.966-5.358l0.529-3.183l-13.125-2.333l-0.555,3.117l-4.82-0.867l-0.908,5.709l-5.493-0.864l-0.008-0.001
